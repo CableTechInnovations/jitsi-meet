@@ -2,11 +2,32 @@ version: '3'
 services:
   web:
     build:
-      context: ./docker-jitsi-meet/web
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - ${CONFIG}/web:/config:Z
-      - ${CERTS}/web.crt:/config/certs/web.crt
-      - ${CERTS}/web.key:/config/certs/web.key
+      - ${CONFIG}/web:/config
+      - ${CERTS}/web:/etc/ssl:ro
+    restart: unless-stopped
+
+  prosody:
+    image: jitsi/prosody:stable-8044
+    volumes:
+      - ${CONFIG}/prosody:/config
+    restart: unless-stopped
+
+  jicofo:
+    image: jitsi/jicofo:stable-8044
+    volumes:
+      - ${CONFIG}/jicofo:/config
+    restart: unless-stopped
+
+  jvb:
+    image: jitsi/jvb:stable-8044
+    ports:
+      - "10000:10000/udp"
+    volumes:
+      - ${CONFIG}/jvb:/config
+    restart: unless-stopped
