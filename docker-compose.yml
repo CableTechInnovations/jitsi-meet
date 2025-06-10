@@ -6,7 +6,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: jitsi-fdesk
     ports:
       - "80:80"
       - "443:443"
