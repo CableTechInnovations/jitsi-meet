@@ -1,6 +1,7 @@
 version: '3'
 services:
   web:
+    restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
@@ -8,10 +9,13 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ${CONFIG}/web:/config
-      - ${CERTS}/web:/etc/ssl:ro
-    restart: unless-stopped
-
+      - ${CONFIG}/web:/config:Z
+      - ${CERTS}/cert.crt:/config/keys/cert.crt:ro
+      - ${CERTS}/cert.key:/config/keys/cert.key:ro
+    environment:
+      - ENABLE_LETSENCRYPT=1
+      - LETSENCRYPT_DOMAIN=meet.fdesk.cabletechinnovations.com
+      - LETSENCRYPT_EMAIL=roberto.andrade@cabletechinnovations.com
   prosody:
     image: jitsi/prosody:stable-8044
     volumes:
