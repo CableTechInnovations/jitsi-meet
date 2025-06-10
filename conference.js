@@ -165,6 +165,8 @@ import { createRnnoiseProcessor } from './react/features/stream-effects/rnnoise'
 import { handleToggleVideoMuted } from './react/features/toolbox/actions.any';
 import { transcriberJoined, transcriberLeft } from './react/features/transcribing/actions';
 import { muteLocal } from './react/features/video-menu/actions.any';
+import '../../features/beautyfilters/BeautyPanel';
+
 
 const logger = Logger.getLogger(__filename);
 let room;
