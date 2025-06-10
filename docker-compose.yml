@@ -28,6 +28,8 @@ services:
     volumes:
       - ${CONFIG}/jicofo:/config
     restart: unless-stopped
+    environment:
+      - JICOFO_AUTH_PASSWORD=${JICOFO_AUTH_PASSWORD}
 
   jvb:
     image: jitsi/jvb:stable-8044
@@ -36,3 +38,5 @@ services:
     volumes:
       - ${CONFIG}/jvb:/config
     restart: unless-stopped
+    environment:
+      - JVB_AUTH_PASSWORD=${JVB_AUTH_PASSWORD}
