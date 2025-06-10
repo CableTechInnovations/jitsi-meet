@@ -1,6 +1,7 @@
 version: '3'
 services:
   web:
+    container_name: jitsi-fdesk-web
     restart: unless-stopped
     build:
       context: .
