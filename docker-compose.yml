@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "$PWD/.jitsi-meet-cfg/web:/config"
+    environment:
+      - ENABLE_LETSENCRYPT=1
+      - LETSENCRYPT_DOMAIN=meet.fdesk.cabletechinnovations.com
+      - LETSENCRYPT_EMAIL=roberto.andrade@cabletechinnovations.com
