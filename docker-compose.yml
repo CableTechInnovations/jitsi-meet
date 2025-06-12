@@ -15,7 +15,7 @@ services:
       - ${CERTS}/cert.key:/config/keys/cert.key:ro
     environment:
       - ENABLE_LETSENCRYPT=1
-      - LETSENCRYPT_DOMAIN=meet.fdesk.cabletechinnovations.com
+      - LETSENCRYPT_DOMAIN=meet1.fdesk.cabletechinnovations.com
       - LETSENCRYPT_EMAIL=roberto.andrade@cabletechinnovations.com
   prosody:
     image: jitsi/prosody:stable-8044
